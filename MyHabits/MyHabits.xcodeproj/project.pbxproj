@@ -15,6 +15,7 @@
 		FF1D2B9F2964423200D0E676 /* HabitsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF1D2B9E2964423100D0E676 /* HabitsStore.swift */; };
 		FF26ABF8297523B800D398C3 /* HabitsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF26ABF7297523B800D398C3 /* HabitsViewController.swift */; };
 		FF26ABFA297523F500D398C3 /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF26ABF9297523F500D398C3 /* InfoViewController.swift */; };
+		FF26ABFC29753D8A00D398C3 /* Text.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF26ABFB29753D8A00D398C3 /* Text.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		FF1D2B9E2964423100D0E676 /* HabitsStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitsStore.swift; sourceTree = "<group>"; };
 		FF26ABF7297523B800D398C3 /* HabitsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitsViewController.swift; sourceTree = "<group>"; };
 		FF26ABF9297523F500D398C3 /* InfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
+		FF26ABFB29753D8A00D398C3 /* Text.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Text.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,7 +65,7 @@
 				FF1D2BA02964423C00D0E676 /* Main */,
 				FF26ABF5297523A000D398C3 /* Habits */,
 				FF26ABF6297523A700D398C3 /* Info */,
-				FF1D2BA12964425800D0E676 /* Custom */,
+				FF1D2BA12964425800D0E676 /* Technical folder */,
 				FF1D2B9329643F4000D0E676 /* Assets.xcassets */,
 				FF1D2B9529643F4000D0E676 /* LaunchScreen.storyboard */,
 				FF1D2B9829643F4000D0E676 /* Info.plist */,
@@ -81,12 +83,13 @@
 			path = Main;
 			sourceTree = "<group>";
 		};
-		FF1D2BA12964425800D0E676 /* Custom */ = {
+		FF1D2BA12964425800D0E676 /* Technical folder */ = {
 			isa = PBXGroup;
 			children = (
 				FF1D2B9E2964423100D0E676 /* HabitsStore.swift */,
+				FF26ABFB29753D8A00D398C3 /* Text.swift */,
 			);
-			path = Custom;
+			path = "Technical folder";
 			sourceTree = "<group>";
 		};
 		FF26ABF5297523A000D398C3 /* Habits */ = {
@@ -178,6 +181,7 @@
 				FF1D2B9F2964423200D0E676 /* HabitsStore.swift in Sources */,
 				FF1D2B8F29643F3E00D0E676 /* ViewController.swift in Sources */,
 				FF1D2B8B29643F3E00D0E676 /* AppDelegate.swift in Sources */,
+				FF26ABFC29753D8A00D398C3 /* Text.swift in Sources */,
 				FF26ABF8297523B800D398C3 /* HabitsViewController.swift in Sources */,
 				FF26ABFA297523F500D398C3 /* InfoViewController.swift in Sources */,
 				FF1D2B8D29643F3E00D0E676 /* SceneDelegate.swift in Sources */,
