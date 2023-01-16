@@ -44,8 +44,8 @@ class TabBarController: UITabBarController {
         setupUI()
     }
     private func setupUI() {
-        firstTabNavigationController = UINavigationController.init(rootViewController: ViewController())
-        secondTabNavigationController = UINavigationController.init(rootViewController: ViewController())
+        firstTabNavigationController = UINavigationController.init(rootViewController: HabitsViewController())
+        secondTabNavigationController = UINavigationController.init(rootViewController: InfoViewController())
         
         self.viewControllers = [firstTabNavigationController, secondTabNavigationController]
         
@@ -57,10 +57,10 @@ class TabBarController: UITabBarController {
         firstTabNavigationController.tabBarItem = item1
         secondTabNavigationController.tabBarItem = item2
         
-        UITabBar.appearance().tintColor = UIColor(red: 0/255.0, green: 146/255.0, blue: 248/255.0, alpha: 1.0)
-        UITabBar.appearance().backgroundColor = .systemGray6
+        UITabBar.appearance().tintColor = UIColor(red: 161/255.0, green: 22/255.0, blue: 204/255.0, alpha: 1.0)
+        UITabBar.appearance().backgroundColor = UIColor(red: 242/255.0, green: 242/255.0, blue: 247/255.0, alpha: 1.0)
         
-        secondTabNavigationController.isNavigationBarHidden = true
+//        secondTabNavigationController.isNavigationBarHidden = true
         
     }
 }

@@ -13,6 +13,8 @@
 		FF1D2B9429643F4000D0E676 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FF1D2B9329643F4000D0E676 /* Assets.xcassets */; };
 		FF1D2B9729643F4000D0E676 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FF1D2B9529643F4000D0E676 /* LaunchScreen.storyboard */; };
 		FF1D2B9F2964423200D0E676 /* HabitsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF1D2B9E2964423100D0E676 /* HabitsStore.swift */; };
+		FF26ABF8297523B800D398C3 /* HabitsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF26ABF7297523B800D398C3 /* HabitsViewController.swift */; };
+		FF26ABFA297523F500D398C3 /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF26ABF9297523F500D398C3 /* InfoViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +26,8 @@
 		FF1D2B9629643F4000D0E676 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		FF1D2B9829643F4000D0E676 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FF1D2B9E2964423100D0E676 /* HabitsStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitsStore.swift; sourceTree = "<group>"; };
+		FF26ABF7297523B800D398C3 /* HabitsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitsViewController.swift; sourceTree = "<group>"; };
+		FF26ABF9297523F500D398C3 /* InfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,7 +61,8 @@
 			isa = PBXGroup;
 			children = (
 				FF1D2BA02964423C00D0E676 /* Main */,
-				FF1D2B8E29643F3E00D0E676 /* ViewController.swift */,
+				FF26ABF5297523A000D398C3 /* Habits */,
+				FF26ABF6297523A700D398C3 /* Info */,
 				FF1D2BA12964425800D0E676 /* Custom */,
 				FF1D2B9329643F4000D0E676 /* Assets.xcassets */,
 				FF1D2B9529643F4000D0E676 /* LaunchScreen.storyboard */,
@@ -71,6 +76,7 @@
 			children = (
 				FF1D2B8A29643F3E00D0E676 /* AppDelegate.swift */,
 				FF1D2B8C29643F3E00D0E676 /* SceneDelegate.swift */,
+				FF1D2B8E29643F3E00D0E676 /* ViewController.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -81,6 +87,22 @@
 				FF1D2B9E2964423100D0E676 /* HabitsStore.swift */,
 			);
 			path = Custom;
+			sourceTree = "<group>";
+		};
+		FF26ABF5297523A000D398C3 /* Habits */ = {
+			isa = PBXGroup;
+			children = (
+				FF26ABF7297523B800D398C3 /* HabitsViewController.swift */,
+			);
+			path = Habits;
+			sourceTree = "<group>";
+		};
+		FF26ABF6297523A700D398C3 /* Info */ = {
+			isa = PBXGroup;
+			children = (
+				FF26ABF9297523F500D398C3 /* InfoViewController.swift */,
+			);
+			path = Info;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -156,6 +178,8 @@
 				FF1D2B9F2964423200D0E676 /* HabitsStore.swift in Sources */,
 				FF1D2B8F29643F3E00D0E676 /* ViewController.swift in Sources */,
 				FF1D2B8B29643F3E00D0E676 /* AppDelegate.swift in Sources */,
+				FF26ABF8297523B800D398C3 /* HabitsViewController.swift in Sources */,
+				FF26ABFA297523F500D398C3 /* InfoViewController.swift in Sources */,
 				FF1D2B8D29643F3E00D0E676 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
