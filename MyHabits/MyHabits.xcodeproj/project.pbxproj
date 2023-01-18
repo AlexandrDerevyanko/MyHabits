@@ -16,6 +16,7 @@
 		FF26ABF8297523B800D398C3 /* HabitsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF26ABF7297523B800D398C3 /* HabitsViewController.swift */; };
 		FF26ABFA297523F500D398C3 /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF26ABF9297523F500D398C3 /* InfoViewController.swift */; };
 		FF26ABFC29753D8A00D398C3 /* Text.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF26ABFB29753D8A00D398C3 /* Text.swift */; };
+		FF26ABFE297646F600D398C3 /* HabitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF26ABFD297646F600D398C3 /* HabitViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		FF26ABF7297523B800D398C3 /* HabitsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitsViewController.swift; sourceTree = "<group>"; };
 		FF26ABF9297523F500D398C3 /* InfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
 		FF26ABFB29753D8A00D398C3 /* Text.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Text.swift; sourceTree = "<group>"; };
+		FF26ABFD297646F600D398C3 /* HabitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,6 +98,7 @@
 			isa = PBXGroup;
 			children = (
 				FF26ABF7297523B800D398C3 /* HabitsViewController.swift */,
+				FF26ABFD297646F600D398C3 /* HabitViewController.swift */,
 			);
 			path = Habits;
 			sourceTree = "<group>";
@@ -181,6 +184,7 @@
 				FF1D2B9F2964423200D0E676 /* HabitsStore.swift in Sources */,
 				FF1D2B8F29643F3E00D0E676 /* ViewController.swift in Sources */,
 				FF1D2B8B29643F3E00D0E676 /* AppDelegate.swift in Sources */,
+				FF26ABFE297646F600D398C3 /* HabitViewController.swift in Sources */,
 				FF26ABFC29753D8A00D398C3 /* Text.swift in Sources */,
 				FF26ABF8297523B800D398C3 /* HabitsViewController.swift in Sources */,
 				FF26ABFA297523F500D398C3 /* InfoViewController.swift in Sources */,

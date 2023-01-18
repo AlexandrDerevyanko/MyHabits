@@ -15,8 +15,16 @@ class InfoViewController: UIViewController {
         return scrollView
     }()
     
+    private let stackView: UIStackView = {
+        let view = UIStackView()
+        view.axis = .vertical
+        view.spacing = 20
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
     private let titleLabel: UILabel = {
-       let title = UILabel()
+        let title = UILabel()
         title.font = UIFont(name: "Arial Bold", size: 20)
         title.textColor = .black
         title.text = textForTitleInfo
@@ -94,6 +102,16 @@ class InfoViewController: UIViewController {
         return description
     }()
     
+    private let descriptionLabelEight: UILabel = {
+        let description = UILabel()
+        description.font = UIFont(name: "Arial normal", size: 14)
+        description.textColor = .black
+        description.numberOfLines = 0
+        description.text = arraytextForDescriptionInfo[7]
+        description.translatesAutoresizingMaskIntoConstraints = false
+        return description
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemGray5
@@ -115,14 +133,16 @@ class InfoViewController: UIViewController {
     
     private func setupUI() {
         view.addSubview(scrollView)
-        scrollView.addSubview(titleLabel)
-        scrollView.addSubview(descriptionLabelOne)
-        scrollView.addSubview(descriptionLabelTwo)
-//        scrollView.addSubview(descriptionLabelThree)
-//        scrollView.addSubview(descriptionLabelFour)
-//        scrollView.addSubview(descriptionLabelFive)
-//        scrollView.addSubview(descriptionLabelSix)
-//        scrollView.addSubview(descriptionLabelSeven)
+        scrollView.addSubview(stackView)
+        stackView.addArrangedSubview(titleLabel)
+        stackView.addArrangedSubview(descriptionLabelOne)
+        stackView.addArrangedSubview(descriptionLabelTwo)
+        stackView.addArrangedSubview(descriptionLabelThree)
+        stackView.addArrangedSubview(descriptionLabelFour)
+        stackView.addArrangedSubview(descriptionLabelFive)
+        stackView.addArrangedSubview(descriptionLabelSix)
+        stackView.addArrangedSubview(descriptionLabelSeven)
+        stackView.addArrangedSubview(descriptionLabelEight)
         setupConstraints()
     }
     
@@ -133,16 +153,10 @@ class InfoViewController: UIViewController {
             scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             
-            titleLabel.topAnchor.constraint(equalTo: scrollView.safeAreaLayoutGuide.topAnchor, constant: 25),
-            titleLabel.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: 10),
-            
-            descriptionLabelOne.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 25),
-            descriptionLabelOne.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
-            descriptionLabelOne.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
-            
-            descriptionLabelTwo.topAnchor.constraint(equalTo: descriptionLabelOne.bottomAnchor, constant: 20),
-            descriptionLabelTwo.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
-            descriptionLabelTwo.trailingAnchor.constraint(equalTo: view.leadingAnchor, constant: -16)
+            stackView.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 25),
+            stackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
+            stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10),
+            stackView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor, constant: -25)
         ])
     }
 

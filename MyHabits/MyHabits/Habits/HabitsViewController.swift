@@ -39,7 +39,7 @@ class HabitsViewController: UIViewController {
     }
     
     @objc private func tap() {
-        let exampleController = InfoViewController()
+        let exampleController = HabitViewController()
         navigationController?.pushViewController(exampleController, animated: true)
     }
     
