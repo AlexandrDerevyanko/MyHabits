@@ -34,7 +34,7 @@ class InfoViewController: UIViewController {
     
     private let descriptionLabelOne: UILabel = {
         let description = UILabel()
-        description.font = UIFont(name: "Arial normal", size: 14)
+        description.font = UIFont(name: "Arial", size: 17)
         description.textColor = .black
         description.numberOfLines = 0
         description.text = arraytextForDescriptionInfo[0]
@@ -44,7 +44,7 @@ class InfoViewController: UIViewController {
     
     private let descriptionLabelTwo: UILabel = {
         let description = UILabel()
-        description.font = UIFont(name: "Arial normal", size: 14)
+        description.font = UIFont(name: "Arial", size: 17)
         description.textColor = .black
         description.numberOfLines = 0
         description.text = arraytextForDescriptionInfo[1]
@@ -54,7 +54,7 @@ class InfoViewController: UIViewController {
     
     private let descriptionLabelThree: UILabel = {
         let description = UILabel()
-        description.font = UIFont(name: "Arial normal", size: 14)
+        description.font = UIFont(name: "Arial", size: 17)
         description.textColor = .black
         description.numberOfLines = 0
         description.text = arraytextForDescriptionInfo[2]
@@ -64,7 +64,7 @@ class InfoViewController: UIViewController {
     
     private let descriptionLabelFour: UILabel = {
         let description = UILabel()
-        description.font = UIFont(name: "Arial normal", size: 14)
+        description.font = UIFont(name: "Arial", size: 17)
         description.textColor = .black
         description.numberOfLines = 0
         description.text = arraytextForDescriptionInfo[3]
@@ -74,7 +74,7 @@ class InfoViewController: UIViewController {
     
     private let descriptionLabelFive: UILabel = {
         let description = UILabel()
-        description.font = UIFont(name: "Arial normal", size: 14)
+        description.font = UIFont(name: "Arial", size: 17)
         description.textColor = .black
         description.numberOfLines = 0
         description.text = arraytextForDescriptionInfo[4]
@@ -84,7 +84,7 @@ class InfoViewController: UIViewController {
     
     private let descriptionLabelSix: UILabel = {
         let description = UILabel()
-        description.font = UIFont(name: "Arial normal", size: 14)
+        description.font = UIFont(name: "Arial", size: 17)
         description.textColor = .black
         description.numberOfLines = 0
         description.text = arraytextForDescriptionInfo[5]
@@ -94,7 +94,7 @@ class InfoViewController: UIViewController {
     
     private let descriptionLabelSeven: UILabel = {
         let description = UILabel()
-        description.font = UIFont(name: "Arial normal", size: 14)
+        description.font = UIFont(name: "Arial", size: 17)
         description.textColor = .black
         description.numberOfLines = 0
         description.text = arraytextForDescriptionInfo[6]
@@ -104,7 +104,7 @@ class InfoViewController: UIViewController {
     
     private let descriptionLabelEight: UILabel = {
         let description = UILabel()
-        description.font = UIFont(name: "Arial normal", size: 14)
+        description.font = UIFont(name: "Arial", size: 17)
         description.textColor = .black
         description.numberOfLines = 0
         description.text = arraytextForDescriptionInfo[7]
@@ -114,7 +114,7 @@ class InfoViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .systemGray5
+        view.backgroundColor = .systemBackground
         setupUI()
     }
     

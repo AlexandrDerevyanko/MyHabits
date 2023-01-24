@@ -17,14 +17,13 @@ class HabitViewController: UIViewController, UIColorPickerViewControllerDelegate
     
     private lazy var colorPicker = makeColorPicker()
     
-    private var date: Date = Date()
-    private var name: String = ""
-    private var color: UIColor = UIColor()
-    
+    private var habitDate: Date = Date()
+    private var habitName: String = ""
+    private var habitColor: UIColor = UIColor(red: 255/255.0, green: 159/255.0, blue: 79/255.0, alpha: 1.0)
     
     private let titleLabel: UILabel = {
         let title = UILabel()
-        title.font = UIFont(name: "Arial normal", size: 17)
+        title.font = UIFont(name: "Arial", size: 17)
         title.textColor = .black
         title.text = "НАЗВАНИЕ"
         title.translatesAutoresizingMaskIntoConstraints = false
@@ -35,7 +34,7 @@ class HabitViewController: UIViewController, UIColorPickerViewControllerDelegate
         let text = UITextField()
         text.textColor = .black
         text.backgroundColor = .white
-        text.font = UIFont(name: "Arial normal", size: 16)
+        text.font = UIFont(name: "Arial", size: 16)
         text.placeholder = "Бегать по утрам, спать 8 часов и т.п."
         text.autocapitalizationType = .none
         text.translatesAutoresizingMaskIntoConstraints = false
@@ -44,7 +43,7 @@ class HabitViewController: UIViewController, UIColorPickerViewControllerDelegate
     
     private let colorLabel: UILabel = {
         let title = UILabel()
-        title.font = UIFont(name: "Arial normal", size: 17)
+        title.font = UIFont(name: "Arial", size: 17)
         title.textColor = .black
         title.text = "ЦВЕТ"
         title.translatesAutoresizingMaskIntoConstraints = false
@@ -61,20 +60,29 @@ class HabitViewController: UIViewController, UIColorPickerViewControllerDelegate
     
     private let timeLabel: UILabel = {
         let title = UILabel()
-        title.font = UIFont(name: "Arial normal", size: 17)
+        title.font = UIFont(name: "Arial", size: 17)
         title.textColor = .black
         title.text = "Время"
         title.translatesAutoresizingMaskIntoConstraints = false
         return title
     }()
     
-    private let timeDescriptionLabel: UILabel = {
-        let title = UILabel()
-        title.font = UIFont(name: "Arial normal", size: 17)
-        title.textColor = .black
-        title.text = "Каждый день в"
-        title.translatesAutoresizingMaskIntoConstraints = false
-        return title
+    private let firstTimeDescriptionLabel: UILabel = {
+        let description = UILabel()
+        description.font = UIFont(name: "Arial", size: 17)
+        description.textColor = .black
+        description.text = "Каждый день в"
+        description.translatesAutoresizingMaskIntoConstraints = false
+        return description
+    }()
+    
+    private let secondTimeDescriptionLabel: UILabel = {
+        let description = UILabel()
+        description.font = UIFont(name: "Arial", size: 17)
+        description.textColor = UIColor(red: 161/255.0, green: 22/255.0, blue: 204/255.0, alpha: 1.0)
+        description.text = timeForView
+        description.translatesAutoresizingMaskIntoConstraints = false
+        return description
     }()
     
     let timePicker: UIDatePicker = {
@@ -109,7 +117,7 @@ class HabitViewController: UIViewController, UIColorPickerViewControllerDelegate
     
     func colorPickerViewControllerDidSelectColor(_ viewController: UIColorPickerViewController) {
         colorButton.backgroundColor = viewController.selectedColor
-        color = viewController.selectedColor
+        habitColor = viewController.selectedColor
         }
     
     private func setupUI() {
@@ -120,7 +128,8 @@ class HabitViewController: UIViewController, UIColorPickerViewControllerDelegate
         scrollView.addSubview(colorLabel)
         scrollView.addSubview(colorButton)
         scrollView.addSubview(timeLabel)
-        scrollView.addSubview(timeDescriptionLabel)
+        scrollView.addSubview(firstTimeDescriptionLabel)
+        scrollView.addSubview(secondTimeDescriptionLabel)
         scrollView.addSubview(timePicker)
         setupConstraints()
     }
@@ -149,10 +158,13 @@ class HabitViewController: UIViewController, UIColorPickerViewControllerDelegate
             timeLabel.topAnchor.constraint(equalTo: colorButton.bottomAnchor, constant: 15),
             timeLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 15),
             
-            timeDescriptionLabel.topAnchor.constraint(equalTo: timeLabel.bottomAnchor, constant: 15),
-            timeDescriptionLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 15),
+            firstTimeDescriptionLabel.topAnchor.constraint(equalTo: timeLabel.bottomAnchor, constant: 15),
+            firstTimeDescriptionLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 15),
             
-            timePicker.topAnchor.constraint(equalTo: timeDescriptionLabel.bottomAnchor, constant: 15),
+            secondTimeDescriptionLabel.topAnchor.constraint(equalTo: timeLabel.bottomAnchor, constant: 15),
+            secondTimeDescriptionLabel.leadingAnchor.constraint(equalTo: firstTimeDescriptionLabel.trailingAnchor, constant: 15),
+            
+            timePicker.topAnchor.constraint(equalTo: firstTimeDescriptionLabel.bottomAnchor, constant: 15),
             timePicker.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 15),
         ])
     }
@@ -192,9 +204,9 @@ class HabitViewController: UIViewController, UIColorPickerViewControllerDelegate
     }
     
     @objc private func save() {
-        let newHabit = Habit(name: name,
-                             date: date,
-                             color: color)
+        let newHabit = Habit(name: habitName,
+                             date: habitDate,
+                             color: habitColor)
         let store = HabitsStore.shared
         store.habits.append(newHabit)
         navigationController?.popToRootViewController(animated: true)
@@ -205,11 +217,12 @@ class HabitViewController: UIViewController, UIColorPickerViewControllerDelegate
     }
     
     @objc private func saveDate() {
-        date = timePicker.date
+        habitDate = timePicker.date
+        secondTimeDescriptionLabel.text = dateFormatter.string(from: habitDate)
     }
     
     @objc private func saveName() {
-        name = textField.text!
+        habitName = textField.text!
     }
     
     @objc private func didHideKeyboard (_ notification: Notification) {

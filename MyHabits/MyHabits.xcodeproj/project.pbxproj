@@ -17,6 +17,11 @@
 		FF26ABFA297523F500D398C3 /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF26ABF9297523F500D398C3 /* InfoViewController.swift */; };
 		FF26ABFC29753D8A00D398C3 /* Text.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF26ABFB29753D8A00D398C3 /* Text.swift */; };
 		FF26ABFE297646F600D398C3 /* HabitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF26ABFD297646F600D398C3 /* HabitViewController.swift */; };
+		FF26AC052977F7EC00D398C3 /* HabitCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF26AC042977F7EC00D398C3 /* HabitCollectionViewCell.swift */; };
+		FF26AC07297A4C5900D398C3 /* Custom.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF26AC06297A4C5900D398C3 /* Custom.swift */; };
+		FF8D397D297E44B6002995D1 /* ProgressCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF8D397C297E44B6002995D1 /* ProgressCollectionViewCell.swift */; };
+		FF8D397F297E7482002995D1 /* TechnicalViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF8D397E297E7482002995D1 /* TechnicalViewCell.swift */; };
+		FF8D3981297F9AEF002995D1 /* HabitDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF8D3980297F9AEF002995D1 /* HabitDetailsViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +37,11 @@
 		FF26ABF9297523F500D398C3 /* InfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
 		FF26ABFB29753D8A00D398C3 /* Text.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Text.swift; sourceTree = "<group>"; };
 		FF26ABFD297646F600D398C3 /* HabitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitViewController.swift; sourceTree = "<group>"; };
+		FF26AC042977F7EC00D398C3 /* HabitCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitCollectionViewCell.swift; sourceTree = "<group>"; };
+		FF26AC06297A4C5900D398C3 /* Custom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Custom.swift; sourceTree = "<group>"; };
+		FF8D397C297E44B6002995D1 /* ProgressCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressCollectionViewCell.swift; sourceTree = "<group>"; };
+		FF8D397E297E7482002995D1 /* TechnicalViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TechnicalViewCell.swift; sourceTree = "<group>"; };
+		FF8D3980297F9AEF002995D1 /* HabitDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitDetailsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,6 +100,8 @@
 			children = (
 				FF1D2B9E2964423100D0E676 /* HabitsStore.swift */,
 				FF26ABFB29753D8A00D398C3 /* Text.swift */,
+				FF26AC06297A4C5900D398C3 /* Custom.swift */,
+				FF8D397E297E7482002995D1 /* TechnicalViewCell.swift */,
 			);
 			path = "Technical folder";
 			sourceTree = "<group>";
@@ -99,6 +111,9 @@
 			children = (
 				FF26ABF7297523B800D398C3 /* HabitsViewController.swift */,
 				FF26ABFD297646F600D398C3 /* HabitViewController.swift */,
+				FF26AC042977F7EC00D398C3 /* HabitCollectionViewCell.swift */,
+				FF8D397C297E44B6002995D1 /* ProgressCollectionViewCell.swift */,
+				FF8D3980297F9AEF002995D1 /* HabitDetailsViewController.swift */,
 			);
 			path = Habits;
 			sourceTree = "<group>";
@@ -181,9 +196,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FF8D3981297F9AEF002995D1 /* HabitDetailsViewController.swift in Sources */,
 				FF1D2B9F2964423200D0E676 /* HabitsStore.swift in Sources */,
 				FF1D2B8F29643F3E00D0E676 /* ViewController.swift in Sources */,
 				FF1D2B8B29643F3E00D0E676 /* AppDelegate.swift in Sources */,
+				FF26AC052977F7EC00D398C3 /* HabitCollectionViewCell.swift in Sources */,
+				FF8D397F297E7482002995D1 /* TechnicalViewCell.swift in Sources */,
+				FF26AC07297A4C5900D398C3 /* Custom.swift in Sources */,
+				FF8D397D297E44B6002995D1 /* ProgressCollectionViewCell.swift in Sources */,
 				FF26ABFE297646F600D398C3 /* HabitViewController.swift in Sources */,
 				FF26ABFC29753D8A00D398C3 /* Text.swift in Sources */,
 				FF26ABF8297523B800D398C3 /* HabitsViewController.swift in Sources */,
