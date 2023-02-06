@@ -9,13 +9,9 @@ import UIKit
 
 class ProgressCollectionViewCell: UICollectionViewCell {
     
-    struct ViewModel {
-        var percent: Float
-    }
-    
     private let progressTitle: UILabel = {
         let title = UILabel()
-        title.font = UIFont(name: "Arial", size: 17)
+        title.font = UIFont.systemFont(ofSize: 17)
         title.text = "Все получится"
         title.textColor = .systemGray2
         title.translatesAutoresizingMaskIntoConstraints = false
@@ -24,7 +20,7 @@ class ProgressCollectionViewCell: UICollectionViewCell {
     
     let percentTitle: UILabel = {
         let title = UILabel()
-        title.font = UIFont(name: "Arial", size: 17)
+        title.font = UIFont.systemFont(ofSize: 17)
         title.text = "\(Int((HabitsStore.shared.todayProgress) * (100)))%"
         title.textColor = .systemGray2
         title.translatesAutoresizingMaskIntoConstraints = false
@@ -33,7 +29,7 @@ class ProgressCollectionViewCell: UICollectionViewCell {
     
     private let percentProgress: UIProgressView = {
         let progress = UIProgressView()
-//        progress.progress = HabitsStore.shared.todayProgress
+        progress.tintColor = .blue
         progress.translatesAutoresizingMaskIntoConstraints = false
         return progress
     }()
@@ -43,7 +39,6 @@ class ProgressCollectionViewCell: UICollectionViewCell {
         backgroundColor = .systemBackground
         layer.cornerRadius = 15
         clipsToBounds = true
-//        percentTitle.text = "\(Int((HabitsStore.shared.todayProgress) * (100)))%"
         setupUI()
     }
     
@@ -55,11 +50,11 @@ class ProgressCollectionViewCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func setup(with viewModel: ViewModel) {
-        percentTitle.text = "\(Int((viewModel.percent) * (100)))%"
-        percentProgress.progress = viewModel.percent
+    func setup(with percent: Float) {
+        percentTitle.text = "\(Int((percent) * (100)))%"
+        percentProgress.setProgress(percent, animated: true)
     }
-    
+
     private func setupUI() {
         addSubview(progressTitle)
         addSubview(percentTitle)

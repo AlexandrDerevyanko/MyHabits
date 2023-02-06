@@ -13,12 +13,11 @@ class HabitsViewController: UIViewController {
         static let numberOfItemsInLIne: CGFloat = 1
     }
     
+    static let notificationName = Notification.Name("myNotificationName")
+    
     private lazy var layout: UICollectionViewFlowLayout = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
-//        layout.minimumInteritemSpacing = 100
-//        layout.minimumLineSpacing = 100
-//        layout.sectionInset = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
         layout.estimatedItemSize = CGSize(width: UIScreen.main.bounds.width - 32, height: 120)
         return layout
     }()
@@ -41,10 +40,6 @@ class HabitsViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .systemGray5
         setupUI()
-//        HabitsStore.shared.track(HabitsStore.shared.habits[1])
-//        print(HabitsStore.shared.habits[1].name)
-//        print(HabitsStore.shared.todayProgress)
-//        print(HabitsStore.shared.habits[1])
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -64,6 +59,7 @@ class HabitsViewController: UIViewController {
         navigationController?.navigationBar.standardAppearance = appearance
         navigationController?.navigationBar.compactAppearance = appearance
         navigationController?.navigationBar.scrollEdgeAppearance = appearance
+        NotificationCenter.default.addObserver(self, selector: #selector(reloadData), name: HabitsViewController.notificationName, object: nil)
     }
     
     private func setupUI() {
@@ -82,13 +78,17 @@ class HabitsViewController: UIViewController {
     }
     
     private func setupBarButtonItem() {
-        let baritem = UIBarButtonItem(image: UIImage(systemName: "folder"), style: .plain, target: self, action: #selector(tap))
+        let baritem = UIBarButtonItem(image: UIImage(systemName: "plus"), style: .plain, target: self, action: #selector(tap))
         self.navigationItem.rightBarButtonItem = baritem
     }
     
     @objc private func tap() {
-        let exampleController = HabitViewController()
+        let exampleController = HabitViewController(habit: Habit(name: "", date: Date(), color: UIColor(red: 255/255.0, green: 159/255.0, blue: 79/255.0, alpha: 1.0)), isChange: false, index: 0)
         navigationController?.pushViewController(exampleController, animated: true)
+    }
+    
+    @objc private func reloadData() {
+        collectionView.reloadData()
     }
     
 }
@@ -101,10 +101,8 @@ extension HabitsViewController: UICollectionViewDataSource, UICollectionViewDele
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "DefaultCell", for: indexPath)
                 return cell
             }
-            cell.clipsToBounds = true
             let post = HabitsStore.shared.todayProgress
-            let publications = ProgressCollectionViewCell.ViewModel(percent: post)
-            cell.setup(with: publications)
+            cell.setup(with: post)
             return cell
         }
         if indexPath.section == 1 {
@@ -113,9 +111,8 @@ extension HabitsViewController: UICollectionViewDataSource, UICollectionViewDele
                 return cell
             }
             
-            cell.clipsToBounds = true
             let post = HabitsStore.shared.habits[indexPath.row]
-            let publications = HabitCollectionViewCell.ViewModel(name: post.name, color: post.color, date: post.date, habit: post, elementNumberInArray: indexPath.row)
+            let publications = HabitCollectionViewCell.ViewModel(name: post.name, color: post.color, date: post.date, habit: post, elementNumberInArray: indexPath.row, arrayCounter: post.trackDates.count, dateString: post.dateString)
             cell.setup(with: publications)
             return cell
         }
@@ -164,7 +161,7 @@ extension HabitsViewController: UICollectionViewDataSource, UICollectionViewDele
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if indexPath.section == 1 {
-            let exampleController = HabitDetailsViewController()
+            let exampleController = HabitDetailsViewController(habit: HabitsStore.shared.habits[indexPath.row], index: indexPath.row)
             navigationController?.pushViewController(exampleController, animated: true)
         }
     }

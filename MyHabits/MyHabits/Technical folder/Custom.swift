@@ -9,10 +9,16 @@ import Foundation
 import UIKit
 
 let dateFormatter: DateFormatter = {
-    let dateFormatter = DateFormatter()
-    dateFormatter.dateStyle = .none
-    dateFormatter.timeStyle = .short
-    return dateFormatter
+    let formatter = DateFormatter()
+    formatter.locale = .init(identifier: "ru_RU")
+    formatter.dateStyle = .none
+    formatter.timeStyle = .short
+    formatter.doesRelativeDateFormatting = true
+    return formatter
 }()
 
 var timeForView: String = dateFormatter.string(from: Date())
+
+class SecondTableViewCell: UITableViewCell {
+    
+}

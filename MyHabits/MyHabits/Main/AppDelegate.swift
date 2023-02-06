@@ -50,17 +50,15 @@ class TabBarController: UITabBarController {
         self.viewControllers = [firstTabNavigationController, secondTabNavigationController]
         
         let item1 = UITabBarItem(title: "Привычки",
-                                 image: UIImage(systemName: "homekit"), tag: 0)
+                                 image: UIImage(systemName: "list.bullet"), tag: 0)
         let item2 = UITabBarItem(title: "Информация",
-                                 image: UIImage(systemName: "square.and.arrow.down.fill"), tag: 1)
+                                 image: UIImage(systemName: "info.circle.fill"), tag: 1)
         
         firstTabNavigationController.tabBarItem = item1
         secondTabNavigationController.tabBarItem = item2
         
         UITabBar.appearance().tintColor = UIColor(red: 161/255.0, green: 22/255.0, blue: 204/255.0, alpha: 1.0)
         UITabBar.appearance().backgroundColor = UIColor(red: 242/255.0, green: 242/255.0, blue: 247/255.0, alpha: 1.0)
-        
-//        secondTabNavigationController.isNavigationBarHidden = true
         
     }
 }

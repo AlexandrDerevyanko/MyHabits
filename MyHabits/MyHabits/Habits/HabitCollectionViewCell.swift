@@ -9,10 +9,9 @@ import UIKit
 
 class HabitCollectionViewCell: UICollectionViewCell {
     
+    var counter = 0
     var buttonColor: UIColor? = UIColor()
-    var habitDate: String = ""
     var habit: Habit? = Habit(name: "1", date: Date(), color: UIColor())
-    var habitElementNumberInArray: Int? = 0
     
     struct ViewModel {
         var name: String?
@@ -20,11 +19,13 @@ class HabitCollectionViewCell: UICollectionViewCell {
         var date: Date?
         var habit: Habit?
         var elementNumberInArray: Int?
+        var arrayCounter: Int?
+        var dateString: String?
     }
     
     private let habitTitle: UILabel = {
         let label = UILabel()
-        label.font = UIFont(name: "Arial", size: 17)
+        label.font = UIFont.systemFont(ofSize: 17)
         label.textColor = .black
         label.numberOfLines = 2
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -33,7 +34,7 @@ class HabitCollectionViewCell: UICollectionViewCell {
     
     private let habitDescription: UILabel = {
         let label = UILabel()
-        label.font = UIFont(name: "Arial", size: 12)
+        label.font = UIFont.systemFont(ofSize: 12)
         label.textColor = .systemGray2
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -41,9 +42,8 @@ class HabitCollectionViewCell: UICollectionViewCell {
     
     private let habitCounter: UILabel = {
         let label = UILabel()
-        label.font = UIFont(name: "Arial", size: 13)
+        label.font = UIFont.systemFont(ofSize: 13)
         label.textColor = .systemGray
-        label.text = "Счетчик: 0"
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -52,6 +52,7 @@ class HabitCollectionViewCell: UICollectionViewCell {
         let button = UIButton()
         button.layer.cornerRadius = 15
         button.layer.borderWidth = 1
+        button.tintColor = .white
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
@@ -68,28 +69,22 @@ class HabitCollectionViewCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    override func prepareForReuse() {
-        super.prepareForReuse()
-        habitTitle.text = nil
-        habitButton.layer.borderColor = nil
-        habitButton.backgroundColor = nil
-        buttonColor = nil
-        habitDescription.text = nil
-    }
-    
     func setup(with viewModel: ViewModel) {
-//        let habitElement = HabitsStore.shared.habits[(habitElementNumberInArray)!]
         habitTitle.text = viewModel.name
         habitButton.layer.borderColor = viewModel.color?.cgColor
-        buttonColor = viewModel.color
-        habitDescription.text = "Каждый день в \(dateFormatter.string(from: viewModel.date ?? Date()))"
+        habitDescription.text = "\(viewModel.dateString ?? "")"
+        habitTitle.textColor = viewModel.color
+        habitCounter.text = "Счетчик \(viewModel.arrayCounter ?? 0)"
         habit = viewModel.habit
-        habitElementNumberInArray = viewModel.elementNumberInArray
-//        if habitElement.isAlreadyTakenToday == true {
-//            habitButton.backgroundColor = viewModel.color
-//        } else {
-//            habitButton.backgroundColor = .white
-//        }
+        buttonColor = viewModel.color
+        let checkHabit = viewModel.habit!.isAlreadyTakenToday
+        if checkHabit == true {
+            habitButton.backgroundColor = viewModel.color
+            habitButton.setImage(UIImage(systemName: "checkmark"), for: [])
+        } else {
+            habitButton.backgroundColor = .white
+            habitButton.setImage(UIImage(systemName: "checkmark"), for: [])
+        }
     }
     
     private func setupUI() {
@@ -120,17 +115,17 @@ class HabitCollectionViewCell: UICollectionViewCell {
     }
     
     private func addTargets() {
-        habitButton.addTarget(self, action: #selector(tapOnHabbitButton), for: .touchUpInside)
+        habitButton.addTarget(self, action: #selector(tap), for: .touchUpInside)
     }
-    
-    private func track() {
-        let habitElement = HabitsStore.shared.habits[(habitElementNumberInArray)!]
-        HabitsStore.shared.track(habitElement)
-    }
-    
-    @objc private func tapOnHabbitButton() {
-        habitButton.backgroundColor = buttonColor
-        track()
+        
+    @objc private func tap() {
+        HabitsStore.shared.track(habit!)
+        NotificationCenter.default.post(name: HabitsViewController.notificationName, object: nil)
+        if habit!.isAlreadyTakenToday == true {
+            habitButton.backgroundColor = buttonColor
+            habitButton.setImage(UIImage(systemName: "checkmark"), for: [])
+            reloadInputViews()
+        }
     }
     
 }

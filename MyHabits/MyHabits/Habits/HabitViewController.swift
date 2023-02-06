@@ -9,21 +9,32 @@ import UIKit
 
 class HabitViewController: UIViewController, UIColorPickerViewControllerDelegate {
     
-    private lazy var scrollView: UIScrollView = {
-        let scrollView = UIScrollView()
-        scrollView.translatesAutoresizingMaskIntoConstraints = false
-        return scrollView
-    }()
-    
     private lazy var colorPicker = makeColorPicker()
     
-    private var habitDate: Date = Date()
-    private var habitName: String = ""
-    private var habitColor: UIColor = UIColor(red: 255/255.0, green: 159/255.0, blue: 79/255.0, alpha: 1.0)
+    var habit: Habit
+    var isChange: Bool
+    var index: Int
+    var habitDate: Date
+    var habitName: String
+    var habitColor: UIColor
+    init(habit: Habit, isChange: Bool, index: Int) {
+        self.habit = habit
+        self.isChange = isChange
+        self.index = index
+        self.habitDate = habit.date
+        self.habitName = habit.name
+        self.habitColor = habit.color
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
     
     private let titleLabel: UILabel = {
         let title = UILabel()
-        title.font = UIFont(name: "Arial", size: 17)
+        title.font = UIFont.systemFont(ofSize: 17)
         title.textColor = .black
         title.text = "НАЗВАНИЕ"
         title.translatesAutoresizingMaskIntoConstraints = false
@@ -34,7 +45,7 @@ class HabitViewController: UIViewController, UIColorPickerViewControllerDelegate
         let text = UITextField()
         text.textColor = .black
         text.backgroundColor = .white
-        text.font = UIFont(name: "Arial", size: 16)
+        text.font = UIFont.systemFont(ofSize: 16)
         text.placeholder = "Бегать по утрам, спать 8 часов и т.п."
         text.autocapitalizationType = .none
         text.translatesAutoresizingMaskIntoConstraints = false
@@ -43,7 +54,7 @@ class HabitViewController: UIViewController, UIColorPickerViewControllerDelegate
     
     private let colorLabel: UILabel = {
         let title = UILabel()
-        title.font = UIFont(name: "Arial", size: 17)
+        title.font = UIFont.systemFont(ofSize: 17)
         title.textColor = .black
         title.text = "ЦВЕТ"
         title.translatesAutoresizingMaskIntoConstraints = false
@@ -58,9 +69,18 @@ class HabitViewController: UIViewController, UIColorPickerViewControllerDelegate
         return button
     }()
     
+    private let deleteButton: UIButton = {
+       let button = UIButton()
+        button.backgroundColor = .systemBackground
+        button.setTitle("Удалить привычку", for: .normal)
+        button.setTitleColor(UIColor.red, for: .normal)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
+    }()
+    
     private let timeLabel: UILabel = {
         let title = UILabel()
-        title.font = UIFont(name: "Arial", size: 17)
+        title.font = UIFont.systemFont(ofSize: 17)
         title.textColor = .black
         title.text = "Время"
         title.translatesAutoresizingMaskIntoConstraints = false
@@ -69,7 +89,7 @@ class HabitViewController: UIViewController, UIColorPickerViewControllerDelegate
     
     private let firstTimeDescriptionLabel: UILabel = {
         let description = UILabel()
-        description.font = UIFont(name: "Arial", size: 17)
+        description.font = UIFont.systemFont(ofSize: 17)
         description.textColor = .black
         description.text = "Каждый день в"
         description.translatesAutoresizingMaskIntoConstraints = false
@@ -78,7 +98,7 @@ class HabitViewController: UIViewController, UIColorPickerViewControllerDelegate
     
     private let secondTimeDescriptionLabel: UILabel = {
         let description = UILabel()
-        description.font = UIFont(name: "Arial", size: 17)
+        description.font = UIFont.systemFont(ofSize: 17)
         description.textColor = UIColor(red: 161/255.0, green: 22/255.0, blue: 204/255.0, alpha: 1.0)
         description.text = timeForView
         description.translatesAutoresizingMaskIntoConstraints = false
@@ -96,9 +116,10 @@ class HabitViewController: UIViewController, UIColorPickerViewControllerDelegate
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
+        setup()
         setupUI()
-        setupGestures()
         addTargets()
+        print(habitDate)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -115,33 +136,42 @@ class HabitViewController: UIViewController, UIColorPickerViewControllerDelegate
         navigationController?.navigationBar.scrollEdgeAppearance = appearance
     }
     
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        if touches.first != nil {
+            view.endEditing(true)
+        }
+        super.touchesBegan(touches, with: event)
+    }
+    
+    func setup() {
+        colorButton.backgroundColor = habitColor
+        textField.text = habitName
+        deleteButton.isHidden = isChange ? false : true
+    }
+    
     func colorPickerViewControllerDidSelectColor(_ viewController: UIColorPickerViewController) {
         colorButton.backgroundColor = viewController.selectedColor
         habitColor = viewController.selectedColor
         }
     
     private func setupUI() {
-        setupBarButtonItem()
-        view.addSubview(scrollView)
-        scrollView.addSubview(titleLabel)
-        scrollView.addSubview(textField)
-        scrollView.addSubview(colorLabel)
-        scrollView.addSubview(colorButton)
-        scrollView.addSubview(timeLabel)
-        scrollView.addSubview(firstTimeDescriptionLabel)
-        scrollView.addSubview(secondTimeDescriptionLabel)
-        scrollView.addSubview(timePicker)
+        view.addSubview(deleteButton)
+        view.addSubview(titleLabel)
+        view.addSubview(textField)
+        view.addSubview(colorLabel)
+        view.addSubview(colorButton)
+        view.addSubview(timeLabel)
+        view.addSubview(firstTimeDescriptionLabel)
+        view.addSubview(secondTimeDescriptionLabel)
+        view.addSubview(timePicker)
         setupConstraints()
+        setupBarButtonItem()
     }
     
     private func setupConstraints() {
         NSLayoutConstraint.activate([
-            scrollView.topAnchor.constraint(equalTo: view.topAnchor),
-            scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             
-            titleLabel.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 20),
+            titleLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
             titleLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 15),
             
             textField.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 15),
@@ -166,18 +196,17 @@ class HabitViewController: UIViewController, UIColorPickerViewControllerDelegate
             
             timePicker.topAnchor.constraint(equalTo: firstTimeDescriptionLabel.bottomAnchor, constant: 15),
             timePicker.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 15),
+            
+            deleteButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -20),
+            deleteButton.centerXAnchor.constraint(equalTo: view.centerXAnchor)
         ])
-    }
-    
-    private func setupGestures() {
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.forcedHidingKeyboard))
-        view.addGestureRecognizer(tapGesture)
     }
     
     private func addTargets() {
         colorButton.addTarget(self, action: #selector(tapOnColorBotton), for: .touchUpInside)
         timePicker.addTarget(self, action: #selector(saveDate), for: .valueChanged)
         textField.addTarget(self, action: #selector(saveName), for: .editingChanged)
+        deleteButton.addTarget(self, action: #selector(alertAction), for: .touchUpInside)
     }
     
     private func makeColorPicker() -> UIColorPickerViewController {
@@ -199,16 +228,35 @@ class HabitViewController: UIViewController, UIColorPickerViewControllerDelegate
         self.navigationItem.rightBarButtonItem = rightBarItem
     }
     
+    @objc private func alertAction() {
+        let alert = UIAlertController(title: "Удалить привычку", message: "Вы хотите удалить привычку \(habitName) ?", preferredStyle: .alert)
+        let firstAction = UIAlertAction(title: "Удалить", style: .destructive) {_ in
+            HabitsStore.shared.habits.remove(at: self.index)
+            self.navigationController?.popToRootViewController(animated: true)
+        }
+        let secontAction = UIAlertAction(title: "Отмена", style: .default)
+        alert.addAction(firstAction)
+        alert.addAction(secontAction)
+        self.present(alert, animated: true, completion: nil)
+    }
+    
     @objc private func cancel() {
         navigationController?.popToRootViewController(animated: true)
     }
     
     @objc private func save() {
-        let newHabit = Habit(name: habitName,
+        let habitValues = Habit(name: habitName,
                              date: habitDate,
                              color: habitColor)
-        let store = HabitsStore.shared
-        store.habits.append(newHabit)
+        
+        if isChange == true {
+            HabitsStore.shared.habits[index].color = habitColor
+            HabitsStore.shared.habits[index].name = habitName
+            HabitsStore.shared.save()
+        } else {
+            HabitsStore.shared.habits.append(habitValues)
+        }
+        
         navigationController?.popToRootViewController(animated: true)
     }
     
@@ -223,14 +271,6 @@ class HabitViewController: UIViewController, UIColorPickerViewControllerDelegate
     
     @objc private func saveName() {
         habitName = textField.text!
-    }
-    
-    @objc private func didHideKeyboard (_ notification: Notification) {
-        forcedHidingKeyboard()
-    }
-    
-    @objc private func forcedHidingKeyboard() {
-        view.endEditing(true)
     }
     
 }
