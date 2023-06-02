@@ -25,7 +25,7 @@ class HabitCollectionViewCell: UICollectionViewCell {
     
     private let habitTitle: UILabel = {
         let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 17)
+        label.font = UIFont.boldSystemFont(ofSize: 17)
         label.textColor = .black
         label.numberOfLines = 2
         label.translatesAutoresizingMaskIntoConstraints = false

@@ -78,8 +78,8 @@ class HabitsViewController: UIViewController {
     }
     
     private func setupBarButtonItem() {
-        let baritem = UIBarButtonItem(image: UIImage(systemName: "plus"), style: .plain, target: self, action: #selector(tap))
-        self.navigationItem.rightBarButtonItem = baritem
+        let barItem = UIBarButtonItem(image: UIImage(systemName: "plus"), style: .plain, target: self, action: #selector(tap))
+        self.navigationItem.rightBarButtonItem = barItem
     }
     
     @objc private func tap() {

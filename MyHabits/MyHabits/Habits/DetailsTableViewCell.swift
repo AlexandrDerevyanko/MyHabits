@@ -46,7 +46,7 @@ class DetailsTableViewCell: UITableViewCell {
         super.prepareForReuse()
     }
     
-    func setup(with viewModel: ViewModel) {
+    func setup(with  viewModel: ViewModel) {
         let trackDateString = HabitsStore.shared.trackDateString(forIndex: viewModel.dateIndex!)
         label.text = trackDateString
         if HabitsStore.shared.habit(viewModel.habit!, isTrackedIn: HabitsStore.shared.dates[viewModel.dateIndex!]) == true {
